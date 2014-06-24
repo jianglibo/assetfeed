@@ -1,0 +1,11 @@
+  {
+    "asset_root": "/assetdata",
+    "index_page": "index.html",
+    "host": "0.0.0.0",
+    "port": 80,
+    "static_files": false,
+    "route_matcher": true,
+    "gzip_files": false,
+    "ssl": false,
+    "bridge": false
+  }

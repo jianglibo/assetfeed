@@ -1,0 +1,57 @@
+# Dockerizing AnonymousUpload: Dockerfile for building Solr 4.7.2 images
+# Based on centos:centos6
+
+FROM centos:centos6
+
+RUN yum install -y java-1.7.0-openjdk.x86_64 java-1.7.0-openjdk-devel.x86_64 tar vi
+
+RUN mkdir -p /opt
+
+WORKDIR /opt
+
+RUN curl -OL http://dl.bintray.com/vertx/downloads/vert.x-2.1.tar.gz
+
+RUN tar -zxf vert.x-2.1.tar.gz
+
+RUN rm -f vert.x-2.1.tar.gz
+
+WORKDIR /usr/bin
+
+RUN ln -s /opt/vert.x-2.1/bin/vertx .
+
+RUN mkdir /opt/anonymousupload
+
+RUN mkdir /opt/asset
+
+# 测试env功能
+# docker run -e "deep=purple" -e "uuu=vvv" --rm centos:centos6 /bin/bash -c export
+
+# docker run -it --name anonymousupload --env  jianglibo/anonymousupload:0.0.2 /opt/upgrade.sh
+
+# docker run -d -p 8999:80 --name anonymousupload -v /assetdata jianglibo/anonymousupload:0.0.2.1 /opt/run.sh
+
+# 像要查看数据，备份数据的话，docker run --volumes-from anonymousupload --name assetdata2 -it centos:centos6 /bin/bash
+# 
+
+#cd /opt/anonymousupload
+
+#/usr/bin/vertx runmod com.m3958.apps~anonymousupload~0.0.2 -conf conf.json
+
+#  {
+#    "asset_root": "/assetdata",
+#    "index_page": "index.html",
+#    "host": "0.0.0.0",
+#    "port": 80,
+#    "static_files": false,
+#    "route_matcher": true,
+#    "gzip_files": false,
+#    "ssl": false,
+#    "bridge": false
+#  }
+
+# /opt/run.sh
+
+
+# vertx runmod com.m3958.apps~anonymousupload~0.0.1-SNAPSHOT
+
+# set vertx JAVA_HOME,/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
