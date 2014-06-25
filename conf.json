@@ -1,6 +1,7 @@
   {
     "asset_root": "/assetdata",
     "index_page": "index.html",
+    "instanceNumber": 5,
     "host": "0.0.0.0",
     "port": 80,
     "static_files": false,

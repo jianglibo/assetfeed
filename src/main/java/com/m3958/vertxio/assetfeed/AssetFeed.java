@@ -7,6 +7,9 @@ import com.m3958.vertxio.assetfeed.utils.Utils;
 
 public class AssetFeed extends Verticle {
 
+/**
+ * 	@see LocalFileUploadServlet
+ */
   @Override
   public void start() {
     JsonObject config = container.config();
@@ -18,6 +21,6 @@ public class AssetFeed extends Verticle {
         vertx.fileSystem().mkdirSync(assetPath);
       }
     }
-    container.deployVerticle("com.m3958.apps.anonymousupload.AnonymousUploadServer", config, 1);
+    container.deployVerticle("com.m3958.vertxio.assetfeed.AssetFeedServer", config, config.getInteger("instanceNumber",1));
   }
 }
